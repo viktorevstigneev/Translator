@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
-import translator from "./translator";
+// import translator from "./translator";
+import theme from './theme';
 
 const root = combineReducers({
-	translator,
+	// translator,
+	theme,
 });
 
 export default root;
