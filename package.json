@@ -33,6 +33,9 @@
 		"webpack-dev-server": "^3.1.14"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.10.4",
+		"@emotion/styled": "^11.10.4",
+		"@mui/material": "^5.10.5",
 		"axios": "^0.21.1",
 		"express": "^4.18.1",
 		"prop-types": "^15.7.2",
