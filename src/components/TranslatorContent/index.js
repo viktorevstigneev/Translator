@@ -8,7 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	postTranslateText: (text, inputLanguage, outputLanguage) =>{
-		dispatch(postTranslateText(text, inputLanguage, outputLanguage))},
+	postTranslateText: (text, inputLanguage, outputLanguage) => {
+		dispatch(postTranslateText(text, inputLanguage, outputLanguage));
+	},
 });
 export default connect(mapStateToProps, mapDispatchToProps)(TranslatorContent);

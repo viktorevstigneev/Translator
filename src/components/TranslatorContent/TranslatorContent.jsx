@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import LanguagesList from '../LanguagesList';
 import { useDebounce } from '../../hooks/useDebounce';
-import { TranslatorContainer, TranslatorSelect, TranslatorText, TranslatorBlock, StyledSwitchIcon } from './styles';
+import { TranslatorContainer, TranslatorText, TranslatorBlock, StyledSwitchIcon } from './styles';
 
 const TranslatorContent = ({ translator, postTranslateText }) => {
 	const [inputText, setInputText] = useState('');
@@ -25,16 +26,12 @@ const TranslatorContent = ({ translator, postTranslateText }) => {
 	return (
 		<TranslatorContainer>
 			<TranslatorBlock>
-				<TranslatorSelect>
-					<option value="">Select Language</option>
-				</TranslatorSelect>
+				<LanguagesList />
 				<TranslatorText onChange={handleTextChange}></TranslatorText>
 			</TranslatorBlock>
 			<StyledSwitchIcon />
 			<TranslatorBlock>
-				<TranslatorSelect>
-					<option value="">en</option>
-				</TranslatorSelect>
+				<LanguagesList />
 				<TranslatorText value={outputText}></TranslatorText>
 			</TranslatorBlock>
 		</TranslatorContainer>

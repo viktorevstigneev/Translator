@@ -1,20 +1,17 @@
-import { POST_TRANSLATE_TEXT, POST_TRANSLATE_TEXT_SUCCESS, POST_TRANSLATE_TEXT_FAILED } from '../../constants';
+import { GET_LANGUAGES, GET_LANGUAGES_SUCCESS, GET_LANGUAGES_FAILED } from '../../constants';
 
-const postTranslateText = (text, inputLanguage, outputLanguage) => ({
-	type: POST_TRANSLATE_TEXT,
-	text,
-	inputLanguage,
-	outputLanguage,
+const getLanguages = () => ({
+	type: GET_LANGUAGES,
 });
 
-export const postTranslateTextFailed = (error) => ({
-	type: POST_TRANSLATE_TEXT_FAILED,
+export const getLanguagesFailed = (error) => ({
+	type: GET_LANGUAGES_FAILED,
 	payload: error,
 });
 
-export const postTranslateTextSuccess = (data) => ({
-	type: POST_TRANSLATE_TEXT_SUCCESS,
+export const getLanguagesSuccess = (data) => ({
+	type: GET_LANGUAGES_SUCCESS,
 	payload: data,
 });
 
-export default postTranslateText;
+export default getLanguages;

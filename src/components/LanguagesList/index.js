@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LanguagesList from './LanguagesList';
-import postTranslateText from '../../store/actions/postTranslateText/postTranslateText';
+import getLanguages from '../../store/actions/getLanguages/getLanguages';
 
 const mapStateToProps = (state) => ({
 	theme: state.theme,
@@ -8,8 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	postTranslateText: (text, inputLanguage, outputLanguage) => {
-		dispatch(postTranslateText(text, inputLanguage, outputLanguage));
-	},
+	getLanguages: () => dispatch(getLanguages()),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(LanguagesList);

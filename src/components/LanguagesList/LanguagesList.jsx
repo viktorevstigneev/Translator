@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import { TranslatorSelect} from './styles';
+import { TranslatorSelect } from './styles';
 
 const LanguagesList = ({ languages, getLanguages }) => {
-  console.log('languages: ', languages);
+	console.log('languages: ', languages);
+
+	useEffect(() => {
+		getLanguages();
+	});
 
 	return (
 		<TranslatorSelect>
-			<option value="">dfdf</option>
+			{languages.translation &&
+				Object.keys(languages.translation).map((key) => (
+					<option key={key} value="key">{languages?.translation[key].name}</option>
+				))}
 		</TranslatorSelect>
 	);
 };
