@@ -4,8 +4,15 @@ import { Skeleton } from '@mui/material';
 import LanguagesList from '../LanguagesList';
 import { useDebounce } from '../../hooks/useDebounce';
 import SwitchIcon from '../SwitchIcon/SwitchIcon';
+import AddingFavoritesButton from '../AddingFavoritesButton';
 import { TranslatorContainer, TranslatorText, TranslatorBlock, StyledSwitchButton } from './styles';
-import { initialInputLanguage, INITIAL_OUTPUT_LANGUAGE, TRANSLATION_DELAY_NUMBER, EMPTY_STRING, COLORS } from '../../constants';
+import {
+	initialInputLanguage,
+	INITIAL_OUTPUT_LANGUAGE,
+	TRANSLATION_DELAY_NUMBER,
+	EMPTY_STRING,
+	COLORS,
+} from '../../constants';
 
 const TranslatorContent = ({ translator, postTranslateText, languages, theme }) => {
 	const [inputText, setInputText] = useState('');
@@ -68,6 +75,11 @@ const TranslatorContent = ({ translator, postTranslateText, languages, theme }) 
 				) : (
 					<TranslatorText defaultValue={outputText} placeholder="Translation" disabled></TranslatorText>
 				)}
+				<AddingFavoritesButton
+					inputLanguage={inputLanguage}
+					inputText={inputText}
+					translator={translator}
+				/>
 			</TranslatorBlock>
 		</TranslatorContainer>
 	);

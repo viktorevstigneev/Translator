@@ -12,6 +12,7 @@ const initialState = {
 		error: {},
 	},
 	languages: [],
+	favorites: []
 };
 
 export default initialState;
