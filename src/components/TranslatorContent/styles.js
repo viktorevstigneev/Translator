@@ -9,19 +9,17 @@ export const TranslatorContainer = styled.div`
 export const TranslatorBlock = styled.div`
 	width: 40%;
 `;
-export const TranslatorSelect = styled.select`
-	display: block;
-	width: 100%;
-	border: 1px solid black;
-	border-radius: 5px;
-`;
 
 export const TranslatorText = styled.textarea`
-	width: 100%;
+	display: block;
+	width: 95%;
 	height: 100px;
-	border: 1px solid black;
+	border: 1px solid ${({ theme }) => theme.text};
 	border-radius: 5px;
-	padding: 0;
+	padding: 10px;
+
+	background: transparent;
+	color: ${({ theme }) => theme.text};
 
 	resize: none;
 `;
