@@ -2,14 +2,16 @@ import React from 'react';
 
 import ThemeToggler from '../ThemeToggler';
 import LogoIcon from '../LogoIcon';
-import { HeaderContainer, HeaderNav, HeaderLink, StyledHeader } from './styles';
+import { HeaderContainer, HeaderNav, HeaderLink, StyledHeader, HeaderWrapper } from './styles';
 
 const Header = () => {
 	return (
 		<StyledHeader>
 			<HeaderContainer>
-				<ThemeToggler />
-				<LogoIcon />
+				<HeaderWrapper>
+					<ThemeToggler />
+					<LogoIcon />
+				</HeaderWrapper>
 				<HeaderNav>
 					<HeaderLink to="/translator">Translator</HeaderLink>
 					<HeaderLink to="/history">History</HeaderLink>

@@ -8,6 +8,8 @@ const initialState = {
 	},
 	translator: {
 		data: [],
+		loading: false,
+		error: {},
 	},
 	languages: {
 		data: [],

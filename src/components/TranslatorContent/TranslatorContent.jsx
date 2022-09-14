@@ -3,7 +3,7 @@ import { Skeleton } from '@mui/material';
 
 import LanguagesList from '../LanguagesList';
 import { useDebounce } from '../../hooks/useDebounce';
-import { TranslatorContainer, TranslatorText, TranslatorBlock, StyledSwitchIcon } from './styles';
+import { TranslatorContainer, TranslatorText, TranslatorBlock, StyledSwitchIcon, StyledSkeletonLoader } from './styles';
 
 const TranslatorContent = ({ translator, postTranslateText }) => {
 	const [inputText, setInputText] = useState('');
@@ -19,7 +19,7 @@ const TranslatorContent = ({ translator, postTranslateText }) => {
 	}, [debounceTranslate]);
 
 	useEffect(() => {
-		const translationText = translator[0] && translator[0]?.translations[0]?.text;
+		const translationText = translator.data[0] && translator.data[0]?.translations[0]?.text;
 		setOutputText(translationText);
 	}, [translator]);
 
@@ -47,8 +47,8 @@ const TranslatorContent = ({ translator, postTranslateText }) => {
 			<StyledSwitchIcon onClick={handleSwapLanguages} />
 			<TranslatorBlock>
 				<LanguagesList value={outputLanguage} setLanguage={setOutputLanguage} />
-				{true ? (
-					<Skeleton variant="rounded" width="100%" height={120}/>
+				{translator.loading ? (
+					<Skeleton width="100%" height={100} variant="rounded" />
 				) : (
 					<TranslatorText value={outputText}></TranslatorText>
 				)}

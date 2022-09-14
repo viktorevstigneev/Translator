@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import SwitchIcon from '../SwitchIcon/SwitchIcon';
 
 export const TranslatorContainer = styled.div`
@@ -22,7 +23,6 @@ export const TranslatorText = styled.textarea`
 	height: 100px;
 	border: 1px solid black;
 	border-radius: 5px;
-	margin-top: 20px;
 	padding: 0;
 
 	resize: none;

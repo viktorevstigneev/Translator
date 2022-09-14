@@ -26,3 +26,8 @@ export const HeaderLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
 `;
+
+export const HeaderWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`
