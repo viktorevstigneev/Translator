@@ -11,9 +11,7 @@ const initialState = {
 		loading: false,
 		error: {},
 	},
-	languages: {
-		data: [],
-	},
+	languages: [],
 };
 
 export default initialState;

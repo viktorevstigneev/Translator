@@ -3,20 +3,25 @@ import { Skeleton } from '@mui/material';
 
 import LanguagesList from '../LanguagesList';
 import { useDebounce } from '../../hooks/useDebounce';
-import { TranslatorContainer, TranslatorText, TranslatorBlock, StyledSwitchIcon, StyledSkeletonLoader } from './styles';
+import SwitchIcon from '../SwitchIcon/SwitchIcon';
+import { TranslatorContainer, TranslatorText, TranslatorBlock, StyledSwitchButton } from './styles';
+import { initialInputLanguage, INITIAL_OUTPUT_LANGUAGE, TRANSLATION_DELAY_NUMBER, EMPTY_STRING } from '../../constants';
 
-const TranslatorContent = ({ translator, postTranslateText }) => {
+const TranslatorContent = ({ translator, postTranslateText, languages }) => {
 	const [inputText, setInputText] = useState('');
 	const [outputText, setOutputText] = useState();
 
-	const [inputLanguage, setInputLanguage] = useState('');
-	const [outputLanguage, setOutputLanguage] = useState('en');
+	const [inputLanguage, setInputLanguage] = useState(initialInputLanguage);
+	const [outputLanguage, setOutputLanguage] = useState(INITIAL_OUTPUT_LANGUAGE);
 
-	const debounceTranslate = useDebounce(inputText, '1000');
+	const debounceTranslate = useDebounce(inputText, TRANSLATION_DELAY_NUMBER);
 
 	useEffect(() => {
+		if (inputLanguage.label === initialInputLanguage.label) {
+			postTranslateText(inputText, EMPTY_STRING, outputLanguage);
+		}
 		postTranslateText(inputText, inputLanguage, outputLanguage);
-	}, [debounceTranslate]);
+	}, [debounceTranslate, inputLanguage, outputLanguage]);
 
 	useEffect(() => {
 		const translationText = translator.data[0] && translator.data[0]?.translations[0]?.text;
@@ -28,29 +33,40 @@ const TranslatorContent = ({ translator, postTranslateText }) => {
 	};
 
 	const handleSwapLanguages = () => {
-		const translationText = translator[0] && translator[0]?.translations[0]?.text;
-		const temporaryInputLanguage = Object.assign(inputLanguage);
-		const temporaryOutputLanguage = Object.assign(outputLanguage);
-		const tempOutputText = translationText;
+		const temporaryInputLanguage = inputLanguage;
+		const temporaryOutputLanguage = outputLanguage;
+		const tempOutputText = outputText;
 
 		setOutputLanguage(temporaryInputLanguage);
 		setInputLanguage(temporaryOutputLanguage);
 
 		setInputText(tempOutputText);
 	};
+
+	const isSwitchButtonDisabled =
+		inputText === EMPTY_STRING ||
+		inputLanguage.label === initialInputLanguage.label ||
+		inputLanguage === initialInputLanguage.label;
+
 	return (
 		<TranslatorContainer>
 			<TranslatorBlock>
-				<LanguagesList value={inputLanguage} setLanguage={setInputLanguage} />
-				<TranslatorText onChange={handleTextChange}></TranslatorText>
+				<LanguagesList
+					value={inputLanguage}
+					setLanguage={setInputLanguage}
+					items={[initialInputLanguage, ...languages]}
+				/>
+				<TranslatorText onChange={handleTextChange} value={inputText}></TranslatorText>
 			</TranslatorBlock>
-			<StyledSwitchIcon onClick={handleSwapLanguages} />
+			<StyledSwitchButton onClick={handleSwapLanguages} disabled={isSwitchButtonDisabled}>
+				<SwitchIcon />
+			</StyledSwitchButton>
 			<TranslatorBlock>
-				<LanguagesList value={outputLanguage} setLanguage={setOutputLanguage} />
+				<LanguagesList value={outputLanguage} setLanguage={setOutputLanguage} items={languages} />
 				{translator.loading ? (
 					<Skeleton width="100%" height={100} variant="rounded" />
 				) : (
-					<TranslatorText value={outputText}></TranslatorText>
+					<TranslatorText defaultValue={outputText}></TranslatorText>
 				)}
 			</TranslatorBlock>
 		</TranslatorContainer>

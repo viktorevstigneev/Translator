@@ -2,13 +2,10 @@ import React, { useEffect } from 'react';
 
 import { TranslatorSelect } from './styles';
 
-const LanguagesList = ({ languages, getLanguages, value, setLanguage }) => {
-	console.log('value: ', value);
-	console.log('languages: ', languages);
-
+const LanguagesList = ({ getLanguages, value, setLanguage, items }) => {
 	useEffect(() => {
 		getLanguages();
-	}, [languages]);
+	}, []);
 
 	const handleChangeLanguage = (evt) => {
 		setLanguage(evt.target.value);
@@ -16,13 +13,14 @@ const LanguagesList = ({ languages, getLanguages, value, setLanguage }) => {
 
 	return (
 		<TranslatorSelect value={value} onChange={handleChangeLanguage}>
-			{!value && <option value={value}>Select Language</option>}
-			{languages.translation &&
-				Object.keys(languages.translation).map((key) => (
-					<option key={key} value={key}>
-						{languages?.translation[key].name}
-					</option>
-				))}
+			{items &&
+				items.map((item) => {
+					return (
+						<option key={item.value} value={item.value}>
+							{item.label}
+						</option>
+					);
+				})}
 		</TranslatorSelect>
 	);
 };

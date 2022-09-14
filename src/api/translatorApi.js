@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { API_URL, API_HOST, API_KEY, LANGUAGES } from '../constants';
+import { transformObjectToArray } from './dataAdapters/transformObjectToArray';
 
 export const postTranslationText = async (text, inputLanguage, outputLanguage) => {
 	const options = {
@@ -37,8 +38,9 @@ export const getLanguagesList = async () => {
 		},
 	};
 
-	 await axios.request(options);
+	// await axios.request(options);
 	// return response.data;
+	const transformedData = transformObjectToArray(LANGUAGES);
 
-	return LANGUAGES;
+	return transformedData;
 };

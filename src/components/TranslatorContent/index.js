@@ -5,6 +5,7 @@ import postTranslateText from '../../store/actions/postTranslateText/postTransla
 const mapStateToProps = (state) => ({
 	theme: state.theme,
 	translator: state.translator,
+	languages: state.languages,
 });
 
 const mapDispatchToProps = (dispatch) => ({

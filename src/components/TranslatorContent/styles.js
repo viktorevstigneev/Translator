@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import SwitchIcon from '../SwitchIcon/SwitchIcon';
-
 export const TranslatorContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -28,7 +26,11 @@ export const TranslatorText = styled.textarea`
 	resize: none;
 `;
 
-export const StyledSwitchIcon = styled(SwitchIcon)`
-	cursor: pointer;
-	fill: red;
+export const StyledSwitchButton = styled.button`
+	width: 35px;
+	height: 35px;
+	z-index: 1000;
+	background: transparent;
+	border: none;
+	cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;

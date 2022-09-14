@@ -13,6 +13,17 @@ export const COLORS = {
 	DARK_THEME_HEADER_COLOR: '#212121',
 };
 
+export const initialInputLanguage = {
+	label: 'select language',
+	value: 'select language',
+};
+
+export const INITIAL_OUTPUT_LANGUAGE = 'en';
+
+export const TRANSLATION_DELAY_NUMBER = 1000;
+
+export const EMPTY_STRING = '';
+
 export const LANGUAGES = {
 	translation: {
 		af: {
