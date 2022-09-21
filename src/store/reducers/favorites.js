@@ -1,16 +1,12 @@
 import initialState from '../initialState';
 import { ADD_TO_FAVORITES } from '../constants';
 
-const favorites = (state = initialState, action) => {
-  console.log('initialState ', initialState);
-  console.log('state: ', state);
+const favorites = (state = initialState.favorites, action) => {
+	console.log('state: ', state);
 	console.log('action: ', action.payload);
 	switch (action.type) {
 		case ADD_TO_FAVORITES:
-			const newState = {
-				favorites: [action.payload.data, ...state.favorites],
-			};
-
+			const newState = [action.payload.data, ...state];
 			// localStorage.setItem('favorites', JSON.stringify(newState.favorites));
 
 			return newState;
